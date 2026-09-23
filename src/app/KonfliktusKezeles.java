@@ -13,7 +13,7 @@ public class KonfliktusKezeles {
         String[] uj = new String[22];
         int index = 1;
         int[] sorrend = new int[3];
-
+        
         switch (valasztott) {
             case 1:
                 sorrend[0] = 1;

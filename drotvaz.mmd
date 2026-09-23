@@ -1,0 +1,16 @@
+classDiagram
+    class pakli
+    class lap
+    class trukk
+
+    class ertek {
+        <<enumeration>>
+    }
+
+    class szin {
+        <<enumeration>>
+    }
+
+    pakli *-- lap : contains
+    lap *-- ertek : contains
+    lap *-- szin : contains

@@ -1,7 +1,7 @@
 package app;
 
 public class Trukk {
-//Gergő
+//Közös
     public static void main(String[] args) {
         
     }

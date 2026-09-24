@@ -1,16 +1,46 @@
 classDiagram
-    class pakli
-    class lap
-    class trukk
-
-    class ertek {
-        <<enumeration>>
+    class Trukk {
+        -Scanner sc$
+        +main(args: String[])$ void
+        -valaszt()$ int
     }
 
-    class szin {
-        <<enumeration>>
+    class Pakli {
+        -lapok: Lap[]
+        +Pakli()
+        +megjelenit() void
+        +keveres(valasztott: int) void
+        +getLapok() Lap[]
     }
 
-    pakli *-- lap : contains
-    lap *-- ertek : contains
-    lap *-- szin : contains
+    class Lap {
+        -szin: Szin
+        -ertek: Ertek
+        +Lap(szin: Szin, ertek: Ertek)
+        +getSzin() Szin
+        +getErtek() Ertek
+    }
+
+    class Ertek {
+        <<enumeration>>
+        VII
+        VIII
+        IX
+        X
+        FELSO
+        KIRALY
+        ASZ
+    }
+
+    class Szin {
+        <<enumeration>>
+        PIROS
+        TOK
+        ZOLD
+        MAKK
+    }
+
+    Trukk ..> Pakli : használja
+    Pakli *-- Lap : tartalmazza (21 db)
+    Lap *-- Ertek : rendelkezik
+    Lap *-- Szin : rendelkezik

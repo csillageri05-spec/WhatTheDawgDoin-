@@ -1,5 +1,6 @@
 package classes;
 
-public enum Ertek {
 //Dávid
+public enum Ertek {
+    VIII,IX,X,felso,kiraly,asz
 }

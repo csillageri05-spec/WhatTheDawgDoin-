@@ -22,23 +22,79 @@ public class Pakli {
 
     }
 
+    public String GetLap(int i) {
+        String ertek = lapok[i].getErtek().toString();
+        String szin = lapok[i].getSzin().toString();
+        return ertek + " | " + szin;
+    }
+
     public void megjelenit() {
         String output = "";
+        int oszlopSzelesseg = 20;
+        int sorokSzama = 7;
+        int oszlopokSzama = 3;
 
-        for (int i = 1; i < lapok.length; i++) {
-            String ertek = lapok[i].getErtek().toString();
-            String szin = lapok[i].getSzin().toString();
+        for (int sor = 1; sor <= sorokSzama; sor++) {
 
-            // A %-18s fix, 18 karakter széles oszlopot hoz létre balra igazítva
-            String formazottLap = String.format("%-18s", ertek + " " + szin);
+            for (int oszlop = 0; oszlop < oszlopokSzama; oszlop++) {
 
-            if (i % 3 == 0) {
-                output += formazottLap + "\n";
-            } else {
-                output += formazottLap + " | ";
+                // Kiszámoljuk, hogy a tömbben hányas indexű kártya jön ide
+                // (pl. 1. sor: 1, 8, 15; 2. sor: 2, 9, 16 stb.)
+                int i = sor + (oszlop * sorokSzama);
+
+                if (i < lapok.length) {
+                    String ertek = lapok[i].getErtek().toString();
+                    String szin = lapok[i].getSzin().toString();
+                    String kartya = ertek + " " + szin;
+
+                    int kozepreTolva = (oszlopSzelesseg + kartya.length()) / 2;
+                    String feligFormazott = String.format("%" + kozepreTolva + "s", kartya);
+                    String formazottLap = String.format("%-" + oszlopSzelesseg + "s", feligFormazott);
+
+                    if (oszlop == oszlopokSzama - 1) {
+                        output += formazottLap;
+                    } else {
+                        output += formazottLap + " | ";
+                    }
+                }
+            }
+            output += "\n";
+        }
+
+        System.out.println(output);
+    }
+
+    public void keveres(int valasztott) {
+        Lap[] uj = new Lap[this.lapok.length];
+
+        int index = 1;
+        int[] sorrend = new int[3];
+
+        switch (valasztott) {
+            case 1:
+                sorrend[0] = 1;
+                sorrend[1] = 0;
+                sorrend[2] = 2;
+                break;
+            case 2:
+                sorrend[0] = 0;
+                sorrend[1] = 1;
+                sorrend[2] = 2;
+                break;
+            default:
+                sorrend[0] = 0;
+                sorrend[1] = 2;
+                sorrend[2] = 1;
+                break;
+        }
+
+        for (int o = 0; o < 3; o++) {
+            for (int s = 0; s < 7; s++) {
+                uj[index++] = this.lapok[sorrend[o] * 7 + s + 1];
             }
         }
-        System.out.println(output);
+
+        this.lapok = uj;
     }
 
 }

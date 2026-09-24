@@ -9,7 +9,7 @@ public class Pakli {
 
     public Pakli() {
         Szin[] szinek = {Szin.PIROS, Szin.TOK, Szin.MAKK, Szin.ZOLD};
-        Ertek[] ertekek = {Ertek.VIII, Ertek.IX, Ertek.X, Ertek.felso, Ertek.kiraly, Ertek.asz};
+        Ertek[] ertekek = {Ertek.VIII, Ertek.IX, Ertek.X, Ertek.FELSO, Ertek.KIRALY, Ertek.ASZ};
         int db = 0;
         for (Szin szin : szinek) {
             for (Ertek ertek : ertekek) {
@@ -27,6 +27,9 @@ public class Pakli {
         String szin = lapok[i].getSzin().toString();
         return ertek + " | " + szin;
     }
+    public Lap[] getLapok() {
+    return this.lapok;
+}
 
     public void megjelenit() {
         String output = "";
